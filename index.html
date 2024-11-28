@@ -64,7 +64,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>Día</th>
                     <th>Fecha</th>
                     <th>Minutos disponibles</th>
                     <th>Hora de ingreso</th>
@@ -123,60 +122,54 @@
             const tabla = document.getElementById("dias-tabla");
             tabla.innerHTML = "";
 
-            // Mostrar el resultado inicial solo una vez
             if (!resultadoInicial.textContent) {
                 resultadoInicial.textContent = `En total, te quedan ${minutosRestantes} minutos para distribuir.`;
             }
 
             diasHabiles.forEach((dia, index) => {
                 const row = document.createElement("tr");
-                const diaCell = document.createElement("td");
                 const fechaCell = document.createElement("td");
                 const minutosCell = document.createElement("td");
                 const ingresoCell = document.createElement("td");
                 const salidaCell = document.createElement("td");
 
-                diaCell.textContent = `Día ${index + 1}`;
                 fechaCell.textContent = dia.toISOString().split("T")[0];
 
-                // Campo de minutos asignados
                 const minutosInput = document.createElement("input");
                 minutosInput.type = "number";
                 minutosInput.value = minutosPorDia;
                 minutosInput.min = 0;
-                minutosInput.dataset.index = index;
+                minutosInput.max = minutosPorDia;
                 minutosInput.addEventListener("input", () => {
+                    if (parseInt(minutosInput.value) > minutosPorDia) {
+                        minutosInput.value = minutosPorDia; // Impedir exceder el valor máximo
+                    }
                     validarMinutos(diasHabiles.length, minutosRestantes);
                     actualizarSalida(dia, index);
                 });
 
                 minutosCell.appendChild(minutosInput);
 
-                // Campo de hora de ingreso
                 const ingresoInput = document.createElement("input");
                 ingresoInput.type = "time";
                 ingresoInput.value = "09:00"; // Hora predeterminada
                 ingresoInput.addEventListener("input", () => actualizarSalida(dia, index));
                 ingresoCell.appendChild(ingresoInput);
 
-                // Campo de hora de salida
                 const salidaInput = document.createElement("input");
                 salidaInput.type = "time";
                 salidaInput.readOnly = true;
                 salidaCell.appendChild(salidaInput);
 
-                row.appendChild(diaCell);
                 row.appendChild(fechaCell);
                 row.appendChild(minutosCell);
                 row.appendChild(ingresoCell);
                 row.appendChild(salidaCell);
                 tabla.appendChild(row);
 
-                // Actualizar hora de salida inicial
                 actualizarSalida(dia, index);
             });
 
-            // Actualizar los minutos restantes de forma dinámica
             validarMinutos(diasHabiles.length, minutosRestantes);
         }
 
@@ -186,10 +179,6 @@
             const resultadoDinamico = document.getElementById("resultado-dinamico");
 
             const minutosDisponibles = minutosRestantes - suma;
-
-            if (minutosDisponibles < 0) {
-                alert(`Te has excedido por ${-minutosDisponibles} minutos. Ajusta los valores.`);
-            }
 
             resultadoDinamico.textContent = `Te quedan ${Math.max(minutosDisponibles, 0)} minutos por distribuir.`;
         }
@@ -203,10 +192,8 @@
             const minutosAsignados = parseInt(minutosInput.value) || 0;
             const [ingresoHora, ingresoMinuto] = ingresoInput.value.split(":").map(Number);
 
-            // Definir horas de trabajo según el día de la semana
             const horasDeTrabajo = dia.getDay() === 5 ? 8 : 9;
 
-            // Calcular hora de salida
             let salidaHora = ingresoHora + horasDeTrabajo;
             let salidaMinuto = ingresoMinuto - minutosAsignados;
 
@@ -215,7 +202,6 @@
                 salidaMinuto += 60;
             }
 
-            // Actualizar campo de salida
             salidaInput.value = `${String(salidaHora).padStart(2, "0")}:${String(salidaMinuto).padStart(2, "0")}`;
         }
     </script>
