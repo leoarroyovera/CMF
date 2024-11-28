@@ -4,61 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor de Minutos de Retraso</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
             padding: 0;
             background-color: #f9f9f9;
-        }
-        h1, h2 {
-            color: #333;
         }
         .container {
             max-width: 800px;
             margin: auto;
-            background: #fff;
             padding: 20px;
+            background: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
         }
         input {
-            padding: 5px;
+            padding: 10px;
             font-size: 16px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-        th, td {
+        table th, table td {
             padding: 10px;
             text-align: center;
+            border: 1px solid #ccc;
         }
         .error {
             color: red;
         }
         .success {
             color: green;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+            }
+            table thead {
+                display: none;
+            }
+            table tr {
+                margin-bottom: 10px;
+                border: 1px solid #ddd;
+            }
+            table td {
+                text-align: left;
+                padding-left: 50%;
+                position: relative;
+            }
+            table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                font-weight: bold;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Gestor de Minutos de Retraso</h1>
-        <h2>Calcula cómo distribuir tus minutos restantes</h2>
+        <h2>Distribuye tus minutos restantes</h2>
         <label for="minutos-adelantados">Minutos usados hasta ahora:</label>
         <input type="number" id="minutos-adelantados" placeholder="Ingresa minutos usados" />
 
         <label for="dias-habiles">Días hábiles restantes:</label>
-        <input type="number" id="dias-habiles" placeholder="Ingresa días hábiles restantes" />
+        <input type="number" id="dias-habiles" />
 
-        <p id="resultado-inicial"></p>
+        <p id="resultado-inicial" class="success"></p>
         <p id="resultado-dinamico" class="success"></p>
         <div id="error-message" class="error"></div>
         <table>
@@ -70,136 +103,134 @@
                     <th>Hora de salida</th>
                 </tr>
             </thead>
-            <tbody id="dias-tabla">
-            </tbody>
+            <tbody id="dias-tabla"></tbody>
         </table>
     </div>
 
+    <!-- Importamos date-fns para manejar fechas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.30.0/date-fns.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const maxMinutos = 59;
+            const fechaActual = new Date();
+            const diasHabilesRestantes = calcularDiasHabiles(fechaActual);
+
+            const diasHabilesInput = document.getElementById("dias-habiles");
+            diasHabilesInput.value = diasHabilesRestantes.length;
 
             document.getElementById("minutos-adelantados").addEventListener("input", actualizarTabla);
-            document.getElementById("dias-habiles").addEventListener("input", actualizarTabla);
+            diasHabilesInput.addEventListener("input", actualizarTabla);
 
             actualizarTabla();
-        });
 
-        function actualizarTabla() {
-            const maxMinutos = 59;
-            const minutosUsados = parseInt(document.getElementById("minutos-adelantados").value) || 0;
-            const diasHabiles = parseInt(document.getElementById("dias-habiles").value) || 0;
-            const minutosRestantes = maxMinutos - minutosUsados;
+            function calcularDiasHabiles(fechaInicio) {
+                const diasHabiles = [];
+                const ultimoDia = new Date(fechaInicio.getFullYear(), fechaInicio.getMonth() + 1, 0);
 
-            const errorElement = document.getElementById("error-message");
-            const resultadoInicial = document.getElementById("resultado-inicial");
-            const resultadoDinamico = document.getElementById("resultado-dinamico");
-            const tabla = document.getElementById("dias-tabla");
-
-            if (minutosUsados > maxMinutos) {
-                errorElement.textContent = "No puedes usar más de 59 minutos en total.";
-                return;
-            } else {
-                errorElement.textContent = "";
-            }
-
-            if (diasHabiles === 0) {
-                tabla.innerHTML = "";
-                resultadoDinamico.textContent = "No hay días hábiles configurados.";
-                return;
-            }
-
-            const minutosPorDia = Math.floor(minutosRestantes / diasHabiles);
-            tabla.innerHTML = "";
-
-            if (!resultadoInicial.textContent) {
-                resultadoInicial.textContent = `En total, te quedan ${minutosRestantes} minutos para distribuir.`;
-            }
-
-            for (let i = 0; i < diasHabiles; i++) {
-                const row = document.createElement("tr");
-                const fechaCell = document.createElement("td");
-                const minutosCell = document.createElement("td");
-                const ingresoCell = document.createElement("td");
-                const salidaCell = document.createElement("td");
-
-                // Fecha simulada
-                const fecha = new Date();
-                fecha.setDate(fecha.getDate() + i);
-                fechaCell.textContent = fecha.toISOString().split("T")[0];
-
-                // Campo de minutos asignados
-                const minutosInput = document.createElement("input");
-                minutosInput.type = "number";
-                minutosInput.value = minutosPorDia;
-                minutosInput.min = 0;
-                minutosInput.max = minutosPorDia;
-                minutosInput.addEventListener("input", () => {
-                    if (parseInt(minutosInput.value) > minutosPorDia) {
-                        minutosInput.value = minutosPorDia;
+                for (let dia = fechaInicio.getDate(); dia <= ultimoDia.getDate(); dia++) {
+                    const fecha = new Date(fechaInicio.getFullYear(), fechaInicio.getMonth(), dia);
+                    if (fecha.getDay() !== 0 && fecha.getDay() !== 6) {
+                        diasHabiles.push(fecha);
                     }
-                    validarMinutos(minutosRestantes);
-                    actualizarSalida(row, minutosInput);
-                });
-                minutosCell.appendChild(minutosInput);
-
-                // Campo de hora de ingreso
-                const ingresoInput = document.createElement("input");
-                ingresoInput.type = "time";
-                ingresoInput.addEventListener("input", () => actualizarSalida(row, minutosInput));
-                ingresoCell.appendChild(ingresoInput);
-
-                // Campo de hora de salida (no editable)
-                const salidaInput = document.createElement("input");
-                salidaInput.type = "time";
-                salidaInput.readOnly = true;
-                salidaCell.appendChild(salidaInput);
-
-                row.appendChild(fechaCell);
-                row.appendChild(minutosCell);
-                row.appendChild(ingresoCell);
-                row.appendChild(salidaCell);
-                tabla.appendChild(row);
+                }
+                return diasHabiles;
             }
 
-            validarMinutos(minutosRestantes);
-        }
+            function actualizarTabla() {
+                const minutosUsados = parseInt(document.getElementById("minutos-adelantados").value) || 0;
+                const diasHabiles = parseInt(diasHabilesInput.value) || 0;
+                const minutosRestantes = maxMinutos - minutosUsados;
 
-        function validarMinutos(minutosRestantes) {
-            const inputs = Array.from(document.querySelectorAll("table input[type='number']"));
-            const suma = inputs.reduce((total, input) => total + (parseInt(input.value) || 0), 0);
-            const resultadoDinamico = document.getElementById("resultado-dinamico");
+                const errorElement = document.getElementById("error-message");
+                const resultadoInicial = document.getElementById("resultado-inicial");
+                const resultadoDinamico = document.getElementById("resultado-dinamico");
+                const tabla = document.getElementById("dias-tabla");
 
-            const minutosDisponibles = minutosRestantes - suma;
+                if (minutosUsados > maxMinutos) {
+                    errorElement.textContent = "No puedes usar más de 59 minutos en total.";
+                    return;
+                } else {
+                    errorElement.textContent = "";
+                }
 
-            resultadoDinamico.textContent = `Te quedan ${Math.max(minutosDisponibles, 0)} minutos por distribuir.`;
-        }
+                if (diasHabiles === 0) {
+                    tabla.innerHTML = "";
+                    resultadoDinamico.textContent = "No hay días hábiles configurados.";
+                    return;
+                }
 
-        function actualizarSalida(row, minutosInput) {
-            const ingresoInput = row.querySelector("input[type='time']");
-            const salidaInput = row.querySelector("input[type='time']:last-child");
+                const minutosPorDia = Math.floor(minutosRestantes / diasHabiles);
+                tabla.innerHTML = "";
 
-            if (!ingresoInput.value) {
-                salidaInput.value = "";
-                return;
+                resultadoInicial.textContent = `En total, te quedan ${minutosRestantes} minutos para distribuir.`;
+
+                const diasHabilesRestantes = calcularDiasHabiles(new Date());
+                for (let i = 0; i < diasHabiles; i++) {
+                    const fecha = diasHabilesRestantes[i] || dateFns.addDays(new Date(), i);
+
+                    const row = document.createElement("tr");
+                    const fechaCell = document.createElement("td");
+                    const minutosCell = document.createElement("td");
+                    const ingresoCell = document.createElement("td");
+                    const salidaCell = document.createElement("td");
+
+                    fechaCell.textContent = dateFns.format(fecha, "yyyy-MM-dd");
+
+                    const minutosInput = document.createElement("input");
+                    minutosInput.type = "number";
+                    minutosInput.value = minutosPorDia;
+                    minutosInput.min = 0;
+                    minutosInput.addEventListener("input", () => {
+                        minutosInput.value = Math.min(parseInt(minutosInput.value) || 0, minutosRestantes);
+                        actualizarSalida(row, minutosInput);
+                    });
+                    minutosCell.appendChild(minutosInput);
+
+                    const ingresoInput = document.createElement("input");
+                    ingresoInput.type = "time";
+                    ingresoInput.addEventListener("input", () => actualizarSalida(row, minutosInput));
+                    ingresoCell.appendChild(ingresoInput);
+
+                    const salidaInput = document.createElement("input");
+                    salidaInput.type = "time";
+                    salidaInput.readOnly = true;
+                    salidaCell.appendChild(salidaInput);
+
+                    row.appendChild(fechaCell);
+                    row.appendChild(minutosCell);
+                    row.appendChild(ingresoCell);
+                    row.appendChild(salidaCell);
+                    tabla.appendChild(row);
+                }
+
+                resultadoDinamico.textContent = `Distribuye tus minutos para optimizar tu tiempo.`;
             }
 
-            const minutosAsignados = parseInt(minutosInput.value) || 0;
-            const [ingresoHora, ingresoMinuto] = ingresoInput.value.split(":").map(Number);
+            function actualizarSalida(row, minutosInput) {
+                const ingresoInput = row.querySelector("input[type='time']");
+                const salidaInput = row.querySelector("input[type='time']:last-child");
 
-            const fecha = new Date(row.cells[0].textContent);
-            const horasDeTrabajo = fecha.getDay() === 5 ? 8 : 9;
+                if (!ingresoInput.value) {
+                    salidaInput.value = "";
+                    return;
+                }
 
-            let salidaHora = ingresoHora + horasDeTrabajo;
-            let salidaMinuto = ingresoMinuto - minutosAsignados;
+                const minutosAsignados = parseInt(minutosInput.value) || 0;
+                const [hora, minuto] = ingresoInput.value.split(":").map(Number);
 
-            if (salidaMinuto < 0) {
-                salidaHora -= 1;
-                salidaMinuto += 60;
+                const horasDeTrabajo = new Date(row.cells[0].textContent).getDay() === 5 ? 8 : 9;
+
+                let horaSalida = hora + horasDeTrabajo;
+                let minutoSalida = minuto - minutosAsignados;
+
+                if (minutoSalida < 0) {
+                    horaSalida -= 1;
+                    minutoSalida += 60;
+                }
+
+                salidaInput.value = `${String(horaSalida).padStart(2, "0")}:${String(minutoSalida).padStart(2, "0")}`;
             }
-
-            salidaInput.value = `${String(salidaHora).padStart(2, "0")}:${String(salidaMinuto).padStart(2, "0")}`;
-        }
+        });
     </script>
 </body>
 </html>
