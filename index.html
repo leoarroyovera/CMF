@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Minutos de Retraso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        input {
+            padding: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestor de Minutos de Retraso</h1>
+        <h2>Calcula cómo distribuir tus minutos restantes</h2>
+        <label for="minutos-adelantados">Minutos usados hasta ahora:</label>
+        <input type="number" id="minutos-adelantados" placeholder="Ingresa minutos usados" />
+
+        <label for="dias-habiles">Días hábiles restantes:</label>
+        <input type="number" id="dias-habiles" placeholder="Días hábiles calculados" readonly />
+
+        <p id="resultado-inicial"></p>
+        <p id="resultado-dinamico" class="success"></p>
+        <div id="error-message" class="error"></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Día</th>
+                    <th>Fecha</th>
+                    <th>Minutos disponibles</th>
+                    <th>Hora de ingreso</th>
+                    <th>Hora de salida</th>
+                </tr>
+            </thead>
+            <tbody id="dias-tabla">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const maxMinutos = 59;
+            const fechaActual = new Date();
+            const diasHabilesRestantes = calcularDiasHabiles(fechaActual);
+
+            document.getElementById("dias-habiles").value = diasHabilesRestantes.length;
+
+            document.getElementById("minutos-adelantados").addEventListener("input", () => {
+                actualizarTabla(diasHabilesRestantes, maxMinutos);
+            });
+
+            actualizarTabla(diasHabilesRestantes, maxMinutos);
+        });
+
+        function calcularDiasHabiles(fechaInicio) {
+            const diasHabiles = [];
+            const ultimoDia = new Date(fechaInicio.getFullYear(), fechaInicio.getMonth() + 1, 0);
+
+            for (let dia = fechaInicio.getDate(); dia <= ultimoDia.getDate(); dia++) {
+                const fecha = new Date(fechaInicio.getFullYear(), fechaInicio.getMonth(), dia);
+                if (fecha.getDay() !== 0 && fecha.getDay() !== 6) { // Excluye sábados y domingos
+                    diasHabiles.push(fecha);
+                }
+            }
+            return diasHabiles;
+        }
+
+        function actualizarTabla(diasHabiles, maxMinutos) {
+            const minutosUsados = parseInt(document.getElementById("minutos-adelantados").value) || 0;
+            const errorElement = document.getElementById("error-message");
+            const resultadoInicial = document.getElementById("resultado-inicial");
+            const resultadoDinamico = document.getElementById("resultado-dinamico");
+
+            if (minutosUsados > maxMinutos) {
+                errorElement.textContent = "No puedes usar más de 59 minutos en total.";
+                resultadoDinamico.textContent = "";
+                return;
+            } else {
+                errorElement.textContent = "";
+            }
+
+            const minutosRestantes = maxMinutos - minutosUsados;
+            const minutosPorDia = Math.floor(minutosRestantes / diasHabiles.length);
+            const tabla = document.getElementById("dias-tabla");
+            tabla.innerHTML = "";
+
+            // Mostrar el resultado inicial solo una vez
+            if (!resultadoInicial.textContent) {
+                resultadoInicial.textContent = `En total, te quedan ${minutosRestantes} minutos para distribuir.`;
+            }
+
+            diasHabiles.forEach((dia, index) => {
+                const row = document.createElement("tr");
+                const diaCell = document.createElement("td");
+                const fechaCell = document.createElement("td");
+                const minutosCell = document.createElement("td");
+                const ingresoCell = document.createElement("td");
+                const salidaCell = document.createElement("td");
+
+                diaCell.textContent = `Día ${index + 1}`;
+                fechaCell.textContent = dia.toISOString().split("T")[0];
+
+                // Campo de minutos asignados
+                const minutosInput = document.createElement("input");
+                minutosInput.type = "number";
+                minutosInput.value = minutosPorDia;
+                minutosInput.min = 0;
+                minutosInput.dataset.index = index;
+                minutosInput.addEventListener("input", () => {
+                    validarMinutos(diasHabiles.length, minutosRestantes);
+                    actualizarSalida(dia, index);
+                });
+
+                minutosCell.appendChild(minutosInput);
+
+                // Campo de hora de ingreso
+                const ingresoInput = document.createElement("input");
+                ingresoInput.type = "time";
+                ingresoInput.value = "09:00"; // Hora predeterminada
+                ingresoInput.addEventListener("input", () => actualizarSalida(dia, index));
+                ingresoCell.appendChild(ingresoInput);
+
+                // Campo de hora de salida
+                const salidaInput = document.createElement("input");
+                salidaInput.type = "time";
+                salidaInput.readOnly = true;
+                salidaCell.appendChild(salidaInput);
+
+                row.appendChild(diaCell);
+                row.appendChild(fechaCell);
+                row.appendChild(minutosCell);
+                row.appendChild(ingresoCell);
+                row.appendChild(salidaCell);
+                tabla.appendChild(row);
+
+                // Actualizar hora de salida inicial
+                actualizarSalida(dia, index);
+            });
+
+            // Actualizar los minutos restantes de forma dinámica
+            validarMinutos(diasHabiles.length, minutosRestantes);
+        }
+
+        function validarMinutos(dias, minutosRestantes) {
+            const inputs = Array.from(document.querySelectorAll("table input[type='number']"));
+            const suma = inputs.reduce((total, input) => total + (parseInt(input.value) || 0), 0);
+            const resultadoDinamico = document.getElementById("resultado-dinamico");
+
+            const minutosDisponibles = minutosRestantes - suma;
+
+            if (minutosDisponibles < 0) {
+                alert(`Te has excedido por ${-minutosDisponibles} minutos. Ajusta los valores.`);
+            }
+
+            resultadoDinamico.textContent = `Te quedan ${Math.max(minutosDisponibles, 0)} minutos por distribuir.`;
+        }
+
+        function actualizarSalida(dia, index) {
+            const row = document.querySelectorAll("#dias-tabla tr")[index];
+            const minutosInput = row.querySelector("input[type='number']");
+            const ingresoInput = row.querySelector("input[type='time']");
+            const salidaInput = row.querySelector("input[type='time']:last-child");
+
+            const minutosAsignados = parseInt(minutosInput.value) || 0;
+            const [ingresoHora, ingresoMinuto] = ingresoInput.value.split(":").map(Number);
+
+            // Definir horas de trabajo según el día de la semana
+            const horasDeTrabajo = dia.getDay() === 5 ? 8 : 9;
+
+            // Calcular hora de salida
+            let salidaHora = ingresoHora + horasDeTrabajo;
+            let salidaMinuto = ingresoMinuto - minutosAsignados;
+
+            if (salidaMinuto < 0) {
+                salidaHora -= 1;
+                salidaMinuto += 60;
+            }
+
+            // Actualizar campo de salida
+            salidaInput.value = `${String(salidaHora).padStart(2, "0")}:${String(salidaMinuto).padStart(2, "0")}`;
+        }
+    </script>
+</body>
+</html>
