@@ -1,236 +1,358 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor de Minutos de Retraso</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            color: #333;
-            text-align: center;
-        }
-        label {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
-        }
-        input {
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            width: 100%;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table th, table td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ccc;
-        }
-        .error {
-            color: red;
-        }
-        .success {
-            color: green;
-            font-weight: bold;
-        }
-        @media (max-width: 600px) {
-            table, thead, tbody, th, td, tr {
-                display: block;
-                width: 100%;
-            }
-            table thead {
-                display: none;
-            }
-            table tr {
-                margin-bottom: 10px;
-                border: 1px solid #ddd;
-            }
-            table td {
-                text-align: left;
-                padding-left: 50%;
-                position: relative;
-            }
-            table td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 10px;
-                font-weight: bold;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuanto Me Falta (CMF)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .tab-content {
+      margin-top: 20px;
+    }
+    .table-container {
+      margin-top: 20px;
+    }
+    .trash-btn {
+      color: red;
+      cursor: pointer;
+    }
+	#logo{
+		max-height:100px;
+	}
+	
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Gestor de Minutos de Retraso</h1>
-        <h2>Distribuye tus minutos restantes</h2>
-        <label for="minutos-adelantados">Minutos usados hasta ahora:</label>
-        <input type="number" id="minutos-adelantados" placeholder="Ingresa minutos usados" />
+<div class="container mt-4">
+  <h1 class="text-center"><img id="logo" src="logo.png"></img></h1>
+  <ul class="nav nav-tabs" id="cmfTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="horario-cmf-tab" data-bs-toggle="tab" data-bs-target="#horario-cmf" type="button" role="tab">Horario CMF</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="horario-sbif-tab" data-bs-toggle="tab" data-bs-target="#horario-sbif" type="button" role="tab">Horario SBIF</button>
+    </li>
+  </ul>
 
-        <label for="dias-habiles">Días hábiles restantes:</label>
-        <input type="number" id="dias-habiles" />
-
-        <p id="resultado-inicial" class="success"></p>
-        <p id="resultado-dinamico" class="success"></p>
-        <div id="error-message" class="error"></div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Minutos disponibles</th>
-                    <th>Hora de ingreso</th>
-                    <th>Hora de salida</th>
-                </tr>
-            </thead>
-            <tbody id="dias-tabla"></tbody>
-        </table>
+  <div class="tab-content">
+    <!-- Horario CMF -->
+    <div class="tab-pane fade show active" id="horario-cmf" role="tabpanel">
+      <div class="mt-3">
+        <label for="minutos-usados-cmf" class="form-label">Minutos usados</label>
+        <input type="number" class="form-control" id="minutos-usados-cmf" min="0" max="59" value="0">
+        <small id="minutos-restantes-cmf" class="form-text text-muted">59 minutos para distribuir este mes</small>
+      </div>
     </div>
+	
+	
 
-    <!-- Importamos date-fns para manejar fechas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.30.0/date-fns.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const maxMinutos = 59;
-            const fechaActual = new Date();
-            const diasHabilesRestantes = calcularDiasHabiles(fechaActual);
 
-            const diasHabilesInput = document.getElementById("dias-habiles");
-            diasHabilesInput.value = diasHabilesRestantes.length;
+    <!-- Horario SBIF -->
+    <div class="tab-pane fade" id="horario-sbif" role="tabpanel">
+      <div class="mt-3">
+        <label for="horario-select-sbif" class="form-label">Selecciona un horario</label>
+        <select class="form-select" id="horario-select-sbif">
+          <option value="1">Horario 1</option>
+          <option value="2">Horario 2</option>
+          <option value="3">Horario 3</option>
+        </select>
+      </div>
+      <div class="mt-3">
+        <label for="minutos-usados-sbif" class="form-label">Minutos usados</label>
+        <input type="number" class="form-control" id="minutos-usados-sbif" min="0" max="59" value="0">
+        <small id="minutos-restantes-sbif" class="form-text text-muted">59 minutos para distribuir este mes</small>
+      </div>
+      <div class="mt-3">
+        <label for="dias-habiles-sbif" class="form-label">Días hábiles restantes</label>
+        <input type="number" class="form-control" id="dias-habiles-sbif" readonly>
+      </div>
+    </div>
+  </div>
 
-            document.getElementById("minutos-adelantados").addEventListener("input", actualizarTabla);
-            diasHabilesInput.addEventListener("input", actualizarTabla);
+ 
+  <button class="btn btn-primary" id="calcular-btn">Calcular</button>
+  <button class="btn btn-secondary" id="reset-btn">Reiniciar</button>
+   <hr>
+  <div class="table-container">
+	<div class="alert alert-danger d-none mt-3" id="error-message"></div>
+	<div class="mt-3">
+	  <div class="progress">
+		<div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+	  </div>
+	</div>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Minutos disponibles</th>
+          <th>Hora de entrada</th>
+          <th>Hora de salida</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody id="result-table-body"></tbody>
+    </table>
+  </div>
+</div>
 
-            actualizarTabla();
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+  const minutosUsadosInputCMF = document.getElementById('minutos-usados-cmf');
+  const minutosRestantesCMF = document.getElementById('minutos-restantes-cmf');
+  const calcularBtn = document.getElementById('calcular-btn');
+  const resetBtn = document.getElementById('reset-btn');
+  const resultTableBody = document.getElementById('result-table-body');
+  const progressBar = document.getElementById('progress-bar');
+  const errorMessage = document.getElementById('error-message');
+  const limiteMinutos = 59;
 
-            function calcularDiasHabiles(fechaInicio) {
-                const diasHabiles = [];
-                const ultimoDia = new Date(fechaInicio.getFullYear(), fechaInicio.getMonth() + 1, 0);
+  const diasFestivos = [
+    '2024-12-25', 
+    '2024-01-01',
+	'2025-04-18',
+	'2025-05-01',
+	'2025-06-20',
+	'2025-07-16',
+	'2025-08-15',
+	'2025-09-18',
+	'2025-09-19',
+	'2025-10-31',
+	'2025-12-08',
+	'2025-12-25' 
+  ];
 
-                for (let dia = fechaInicio.getDate(); dia <= ultimoDia.getDate(); dia++) {
-                    const fecha = new Date(fechaInicio.getFullYear(), fechaInicio.getMonth(), dia);
-                    if (fecha.getDay() !== 0 && fecha.getDay() !== 6) {
-                        diasHabiles.push(fecha);
-                    }
-                }
-                return diasHabiles;
-            }
+  const saveToLocalStorage = () => {
+    const data = {
+      minutosUsados: parseInt(minutosUsadosInputCMF.value),
+      tabla: Array.from(resultTableBody.querySelectorAll('tr')).map((fila) => ({
+        fecha: fila.cells[0].textContent,
+        minutosDia: parseInt(fila.querySelector('.minutos-dia').value),
+        horaEntrada: fila.querySelector('.hora-entrada').value,
+      })),
+    };
+    localStorage.setItem('cmfData', JSON.stringify(data));
+  };
 
-            function actualizarTabla() {
-                const minutosUsados = parseInt(document.getElementById("minutos-adelantados").value) || 0;
-                const diasHabiles = parseInt(diasHabilesInput.value) || 0;
-                const minutosRestantes = maxMinutos - minutosUsados;
+  const loadFromLocalStorage = () => {
+    const savedData = JSON.parse(localStorage.getItem('cmfData'));
+    if (!savedData) return;
 
-                const errorElement = document.getElementById("error-message");
-                const resultadoInicial = document.getElementById("resultado-inicial");
-                const resultadoDinamico = document.getElementById("resultado-dinamico");
-                const tabla = document.getElementById("dias-tabla");
+    minutosUsadosInputCMF.value = savedData.minutosUsados;
+    generarTablaDiasHabiles();
 
-                if (minutosUsados > maxMinutos) {
-                    errorElement.textContent = "No puedes usar más de 59 minutos en total.";
-                    return;
-                } else {
-                    errorElement.textContent = "";
-                }
+    const filas = resultTableBody.querySelectorAll('tr');
+    savedData.tabla.forEach((filaData, index) => {
+      const fila = filas[index];
+      if (!fila) return;
 
-                if (diasHabiles === 0) {
-                    tabla.innerHTML = "";
-                    resultadoDinamico.textContent = "No hay días hábiles configurados.";
-                    return;
-                }
+      fila.querySelector('.minutos-dia').value = filaData.minutosDia;
+      fila.querySelector('.hora-entrada').value = filaData.horaEntrada;
+      actualizarHoraSalida(fila);
+    });
 
-                const minutosPorDia = Math.floor(minutosRestantes / diasHabiles);
-                tabla.innerHTML = "";
+    updateMinutosRestantes();
+    updateProgressBar();
+  };
 
-                resultadoInicial.textContent = `En total, te quedan ${minutosRestantes} minutos para distribuir.`;
+  const calcularDiasHabilesRestantes = () => {
+    const today = new Date();
+    const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    let diasHabiles = [];
 
-                const diasHabilesRestantes = calcularDiasHabiles(new Date());
-                for (let i = 0; i < diasHabiles; i++) {
-                    const fecha = diasHabilesRestantes[i] || dateFns.addDays(new Date(), i);
+    for (let d = new Date(today); d <= endOfMonth; d.setDate(d.getDate() + 1)) {
+      const fechaStr = d.toISOString().split('T')[0];
+      if (d.getDay() !== 0 && d.getDay() !== 6 && !diasFestivos.includes(fechaStr)) {
+        diasHabiles.push(new Date(d));
+      }
+    }
 
-                    const row = document.createElement("tr");
-                    const fechaCell = document.createElement("td");
-                    const minutosCell = document.createElement("td");
-                    const ingresoCell = document.createElement("td");
-                    const salidaCell = document.createElement("td");
+    return diasHabiles;
+  };
 
-                    fechaCell.textContent = dateFns.format(fecha, "yyyy-MM-dd");
+  const mostrarError = (mensaje) => {
+    errorMessage.textContent = mensaje;
+    errorMessage.classList.remove('d-none');
+    setTimeout(() => errorMessage.classList.add('d-none'), 3000);
+  };
 
-                    const minutosInput = document.createElement("input");
-                    minutosInput.type = "number";
-                    minutosInput.value = minutosPorDia;
-                    minutosInput.min = 0;
-                    minutosInput.addEventListener("input", () => {
-                        minutosInput.value = Math.min(parseInt(minutosInput.value) || 0, minutosRestantes);
-                        actualizarSalida(row, minutosInput);
-                    });
-                    minutosCell.appendChild(minutosInput);
 
-                    const ingresoInput = document.createElement("input");
-                    ingresoInput.type = "time";
-                    ingresoInput.addEventListener("input", () => actualizarSalida(row, minutosInput));
-                    ingresoCell.appendChild(ingresoInput);
 
-                    const salidaInput = document.createElement("input");
-                    salidaInput.type = "time";
-                    salidaInput.readOnly = true;
-                    salidaCell.appendChild(salidaInput);
+  const updateMinutosRestantes = () => {
+    let minutosUsados = parseInt(minutosUsadosInputCMF.value) || 0;
 
-                    row.appendChild(fechaCell);
-                    row.appendChild(minutosCell);
-                    row.appendChild(ingresoCell);
-                    row.appendChild(salidaCell);
-                    tabla.appendChild(row);
-                }
+    if (minutosUsados > limiteMinutos) {
+      minutosUsados = limiteMinutos;
+      minutosUsadosInputCMF.value = limiteMinutos;
+    }
 
-                resultadoDinamico.textContent = `Distribuye tus minutos para optimizar tu tiempo.`;
-            }
+    const minutosRestantes = limiteMinutos - minutosUsados;
+    minutosRestantesCMF.textContent = `${minutosRestantes} minutos para distribuir este mes`;
+    return minutosRestantes;
+  };
 
-            function actualizarSalida(row, minutosInput) {
-                const ingresoInput = row.querySelector("input[type='time']");
-                const salidaInput = row.querySelector("input[type='time']:last-child");
+  const calcularHoraSalida = (horaEntrada, diaSemana, minutos) => {
+    const [hours, minutesInput] = horaEntrada.split(':').map(Number);
+    const totalHoras = diaSemana === 5 ? 8 : 9;
+    const salida = new Date(0, 0, 0, hours + totalHoras, minutesInput - minutos);
+    return salida.toTimeString().slice(0, 5);
+  };
 
-                if (!ingresoInput.value) {
-                    salidaInput.value = "";
-                    return;
-                }
+  const actualizarHoraSalida = (fila) => {
+    const horaEntrada = fila.querySelector('.hora-entrada').value;
+    const minutosDia = parseInt(fila.querySelector('.minutos-dia').value) || 0;
+    const fechaTexto = fila.cells[0].textContent;
+    const fecha = new Date(fechaTexto.split('/').reverse().join('/'));
+    const diaSemana = fecha.getDay();
 
-                const minutosAsignados = parseInt(minutosInput.value) || 0;
-                const [hora, minuto] = ingresoInput.value.split(":").map(Number);
+    const nuevaHoraSalida = calcularHoraSalida(horaEntrada, diaSemana, minutosDia);
+    fila.querySelector('.hora-salida').textContent = nuevaHoraSalida;
+  };
 
-                const horasDeTrabajo = new Date(row.cells[0].textContent).getDay() === 5 ? 8 : 9;
+  const validarMinutosDia = (input) => {
+    const minutosRestantes = updateMinutosRestantes();
+    let nuevoValor = parseInt(input.value) || 0;
 
-                let horaSalida = hora + horasDeTrabajo;
-                let minutoSalida = minuto - minutosAsignados;
+    if (nuevoValor > minutosRestantes) {
+      nuevoValor = minutosRestantes;
+      input.value = nuevoValor;
+    }
+  };
 
-                if (minutoSalida < 0) {
-                    horaSalida -= 1;
-                    minutoSalida += 60;
-                }
+  const updateProgressBar = () => {
+    const minutosRestantes = updateMinutosRestantes();
+    const sumaDistribuidos = calcularSumaMinutosDia();
 
-                salidaInput.value = `${String(horaSalida).padStart(2, "0")}:${String(minutoSalida).padStart(2, "0")}`;
-            }
+    const porcentaje = Math.min(Math.round((sumaDistribuidos / minutosRestantes) * 100), 100);
+
+    progressBar.style.width = `${porcentaje}%`;
+    progressBar.setAttribute('aria-valuenow', porcentaje);
+    progressBar.textContent = `${minutosRestantes - sumaDistribuidos} minutos restantes`;
+
+    if (sumaDistribuidos >= limiteMinutos) {
+      progressBar.classList.remove('bg-success');
+      progressBar.classList.add('bg-danger');
+    } else {
+      progressBar.classList.remove('bg-danger');
+      progressBar.classList.add('bg-success');
+    }
+  };
+
+  const calcularSumaMinutosDia = () => {
+    const filas = resultTableBody.querySelectorAll('tr');
+    let sumaMinutos = 0;
+
+    filas.forEach((fila) => {
+      const minutosInput = fila.querySelector('.minutos-dia');
+      sumaMinutos += parseInt(minutosInput.value) || 0;
+    });
+
+    return sumaMinutos;
+  };
+
+  const resetTable = () => {
+    minutosUsadosInputCMF.value = 0;
+    generarTablaDiasHabiles();
+    updateMinutosRestantes();
+    updateProgressBar();
+    saveToLocalStorage();
+  };
+  
+   const eliminarFila = (e) => {
+      if (e.target.classList.contains('trash-btn')) {
+        e.target.closest('tr').remove();
+        recalcularDistribucionMinutos();
+      }
+    };
+  
+  const recalcularDistribucionMinutos = () => {
+      const filas = resultTableBody.querySelectorAll('tr');
+      const totalFilas = filas.length;
+      const minutosRestantes = updateMinutosRestantes();
+
+      if (minutosRestantes > 0) {
+        const minutosPorDia = Math.floor(minutosRestantes / totalFilas);
+
+        let sumaDistribuidos = 0;
+        filas.forEach((fila, index) => {
+          const minutosInput = fila.querySelector('.minutos-dia');
+          const horaEntradaInput = fila.querySelector('.hora-entrada');
+          const fechaTexto = fila.cells[0].textContent;
+          const fecha = new Date(fechaTexto.split('/').reverse().join('/'));
+          const diaSemana = fecha.getDay();
+
+          if (index === totalFilas - 1) {
+            minutosInput.value = minutosRestantes - sumaDistribuidos;
+          } else {
+            minutosInput.value = minutosPorDia;
+            sumaDistribuidos += minutosPorDia;
+          }
+
+          actualizarHoraSalida(fila);
         });
-    </script>
+
+        updateProgressBar();
+      }
+    };
+
+  
+  const generarTablaDiasHabiles = () => {
+    const diasHabiles = calcularDiasHabilesRestantes();
+
+    resultTableBody.innerHTML = '';
+    diasHabiles.forEach((fecha) => {
+      const fechaStr = fecha.toLocaleDateString();
+      const horaEntrada = '08:00';
+      const minutosDistribuidos = 0;
+      const diaSemana = fecha.getDay();
+      const horaSalida = calcularHoraSalida(horaEntrada, diaSemana, minutosDistribuidos);
+
+      resultTableBody.innerHTML += `
+        <tr>
+          <td>${fechaStr}</td>
+          <td><input type="number" class="form-control minutos-dia" value="${minutosDistribuidos}" min="0"></td>
+          <td><input type="time" class="form-control hora-entrada" value="${horaEntrada}"></td>
+          <td class="hora-salida">${horaSalida}</td>
+          <td><span class="trash-btn">🗑️</span></td>
+        </tr>
+      `;
+    });
+  };
+
+  minutosUsadosInputCMF.addEventListener('input', () => {
+    updateMinutosRestantes();
+    updateProgressBar();
+    saveToLocalStorage();
+  });
+
+  resultTableBody.addEventListener('click', eliminarFila);
+
+  resultTableBody.addEventListener('input', (e) => {
+    const input = e.target;
+    if (input.classList.contains('minutos-dia')) {
+      validarMinutosDia(input);
+	  actualizarHoraSalida(input.closest('tr'));
+    }
+    if (input.classList.contains('hora-entrada')) {
+      actualizarHoraSalida(input.closest('tr'));
+    }
+    updateProgressBar();
+    saveToLocalStorage();
+  });
+  
+   calcularBtn.addEventListener('click', recalcularDistribucionMinutos);
+
+  resetBtn.addEventListener('click', resetTable);
+
+  // Inicializar tabla
+  generarTablaDiasHabiles();
+  updateMinutosRestantes();
+  updateProgressBar();
+  loadFromLocalStorage();
+});
+
+</script>
+
+
 </body>
 </html>
