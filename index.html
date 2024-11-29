@@ -42,6 +42,9 @@
         <input type="number" class="form-control" id="minutos-usados-cmf" min="0" max="59" value="0">
         <small id="minutos-restantes-cmf" class="form-text text-muted">59 minutos para distribuir este mes</small>
       </div>
+	  
+		<button class="btn btn-primary" id="calcular-btn">Calcular</button>
+		<button class="btn btn-secondary" id="reset-btn">Reiniciar</button>
     </div>
 	
 	
@@ -52,9 +55,13 @@
       <div class="mt-3">
         <label for="horario-select-sbif" class="form-label">Selecciona un horario</label>
         <select class="form-select" id="horario-select-sbif">
-          <option value="1">Horario 1</option>
-          <option value="2">Horario 2</option>
-          <option value="3">Horario 3</option>
+          <option value="1">Alternativa 1</option>
+          <option value="2">Alternativa 2</option>
+          <option value="3">Alternativa 3</option>
+		  <option value="4">Alternativa 4</option>
+          <option value="5">Alternativa 5</option>
+          <option value="6">Alternativa 6</option>
+		  <option value="7">Alternativa 7</option>
         </select>
       </div>
       <div class="mt-3">
@@ -62,16 +69,16 @@
         <input type="number" class="form-control" id="minutos-usados-sbif" min="0" max="59" value="0">
         <small id="minutos-restantes-sbif" class="form-text text-muted">59 minutos para distribuir este mes</small>
       </div>
-      <div class="mt-3">
-        <label for="dias-habiles-sbif" class="form-label">Días hábiles restantes</label>
-        <input type="number" class="form-control" id="dias-habiles-sbif" readonly>
-      </div>
+	  
+		<button class="btn btn-primary" id="calcular-btn-sbif">Calcular</button>
+		<button class="btn btn-secondary" id="reset-btn">Reiniciar</button>
     </div>
+	
+	
   </div>
 
  
-  <button class="btn btn-primary" id="calcular-btn">Calcular</button>
-  <button class="btn btn-secondary" id="reset-btn">Reiniciar</button>
+  
    <hr>
   <div class="table-container">
 	<div class="alert alert-danger d-none mt-3" id="error-message"></div>
@@ -96,11 +103,15 @@
   </div>
 </div>
 
+ <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
  document.addEventListener('DOMContentLoaded', () => {
   const minutosUsadosInputCMF = document.getElementById('minutos-usados-cmf');
   const minutosRestantesCMF = document.getElementById('minutos-restantes-cmf');
   const calcularBtn = document.getElementById('calcular-btn');
+  const calcularBtnSbif = document.getElementById('calcular-btn-sbif');
   const resetBtn = document.getElementById('reset-btn');
   const resultTableBody = document.getElementById('result-table-body');
   const progressBar = document.getElementById('progress-bar');
@@ -294,6 +305,10 @@
         updateProgressBar();
       }
     };
+	
+	const calcularSbif = () => {
+		alert("Terminando de entender el entuerto que significan los horarios, lo subo. Por mientras, pida el excel.");
+    };
 
   
   const generarTablaDiasHabiles = () => {
@@ -340,7 +355,8 @@
     saveToLocalStorage();
   });
   
-   calcularBtn.addEventListener('click', recalcularDistribucionMinutos);
+	calcularBtn.addEventListener('click', recalcularDistribucionMinutos);
+    calcularBtnSbif.addEventListener('click', calcularSbif);
 
   resetBtn.addEventListener('click', resetTable);
 
