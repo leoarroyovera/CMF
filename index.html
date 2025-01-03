@@ -42,7 +42,17 @@
         <input type="number" class="form-control" id="minutos-usados-cmf" min="0" max="59" value="0">
         <small id="minutos-restantes-cmf" class="form-text text-muted">59 minutos para distribuir este mes</small>
       </div>
-	  
+	  <div class="mt-3" id="dias-semana-checkboxes">
+        
+        <div>
+		  <label class="form-label">Días de la semana con Teletrabajo: </label>
+          <label><input type="checkbox" class="dias-semana" value="1"> Lunes</label>
+          <label><input type="checkbox" class="dias-semana" value="2"> Martes</label>
+          <label><input type="checkbox" class="dias-semana" value="3"> Miércoles</label>
+          <label><input type="checkbox" class="dias-semana" value="4"> Jueves</label>
+          <label><input type="checkbox" class="dias-semana" value="5"> Viernes</label>
+        </div>
+      </div>
 		<button class="btn btn-primary" id="calcular-btn">Distribuir minutos</button> 
 		<button class="btn btn-secondary" id="reset-btn">Reiniciar</button>
     </div>
@@ -72,13 +82,9 @@
 	  
 		<button class="btn btn-primary" id="calcular-btn-sbif">Distribuir minutos</button>
 		<button class="btn btn-secondary" id="reset-btn">Reiniciar</button>
-    </div>
-	
-	
+    </div>	
   </div>
 
- 
-  
    <hr>
   <div class="table-container">
 	<div class="alert alert-danger d-none mt-3" id="error-message"></div>
@@ -125,6 +131,34 @@
   let minutosADistribuirEnElMes = 0;
   
   
+  const checkboxes = document.querySelectorAll('.dias-semana');
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const dayIndex = parseInt(checkbox.value);
+      const rows = Array.from(resultTableBody.querySelectorAll('tr'));
+
+      if (checkbox.checked) {
+        rows.forEach(row => {
+          const dateText = row.cells[0].textContent;
+          const date = new Date(dateText.split('/').reverse().join('/'));
+          if (date.getDay() === dayIndex) {
+            row.style.display = 'none';
+          }
+        });
+      } else {
+        rows.forEach(row => {
+          const dateText = row.cells[0].textContent;
+          const date = new Date(dateText.split('/').reverse().join('/'));
+          if (date.getDay() === dayIndex) {
+            row.style.display = '';
+          }
+        });
+      }
+    });
+  });
+  
+  
   document.getElementById('export-btn').addEventListener('click', () => {
 		const tableContainer = document.querySelector('.table');
 		html2canvas(tableContainer).then(canvas => {
@@ -163,7 +197,7 @@
 		  }
 	}
 
-	return diasHabiles;
+		return diasHabiles;
 	};
 
 	const mostrarError = (mensaje) => {
@@ -197,23 +231,23 @@
 		minutosADistribuirEnElMes =  minutosRestantes;
 	};
 
-  const calcularHoraSalida = (horaEntrada, diaSemana, minutos) => {
-    const [hours, minutesInput] = horaEntrada.split(':').map(Number);
-    const totalHoras = diaSemana === 5 ? 8 : 9;
-    const salida = new Date(0, 0, 0, hours + totalHoras, minutesInput - minutos);
-    return salida.toTimeString().slice(0, 5);
-  };
+	  const calcularHoraSalida = (horaEntrada, diaSemana, minutos) => {
+		const [hours, minutesInput] = horaEntrada.split(':').map(Number);
+		const totalHoras = diaSemana === 5 ? 8 : 9;
+		const salida = new Date(0, 0, 0, hours + totalHoras, minutesInput - minutos);
+		return salida.toTimeString().slice(0, 5);
+	  };
 
-  const actualizarHoraSalida = (fila) => {
-    const horaEntrada = fila.querySelector('.hora-entrada').value;
-    const minutosDia = parseInt(fila.querySelector('.minutos-dia').value) || 0;
-    const fechaTexto = fila.cells[0].textContent;
-    const fecha = new Date(fechaTexto.split('/').reverse().join('/'));
-    const diaSemana = fecha.getDay();
+	  const actualizarHoraSalida = (fila) => {
+		const horaEntrada = fila.querySelector('.hora-entrada').value;
+		const minutosDia = parseInt(fila.querySelector('.minutos-dia').value) || 0;
+		const fechaTexto = fila.cells[0].textContent;
+		const fecha = new Date(fechaTexto.split('/').reverse().join('/'));
+		const diaSemana = fecha.getDay();
 
-    const nuevaHoraSalida = calcularHoraSalida(horaEntrada, diaSemana, minutosDia);
-    fila.querySelector('.hora-salida').textContent = nuevaHoraSalida;
-  };
+		const nuevaHoraSalida = calcularHoraSalida(horaEntrada, diaSemana, minutosDia);
+		fila.querySelector('.hora-salida').textContent = nuevaHoraSalida;
+	  };
 
 	const validarMinutosDia = (input) => {
 		const minutosRestantes = updateMinutosADistribuir(input);
@@ -227,59 +261,59 @@
 		}
 	};
 
-  const updateProgressBar = () => {
-    const minutosRestantes = minutosADistribuirEnElMes;
-    const sumaDistribuidos = calcularSumaMinutosDia();
+	  const updateProgressBar = () => {
+		const minutosRestantes = minutosADistribuirEnElMes;
+		const sumaDistribuidos = calcularSumaMinutosDia();
 
-    const porcentaje = Math.min(Math.round((sumaDistribuidos / minutosRestantes) * 100), 100);
+		const porcentaje = Math.min(Math.round((sumaDistribuidos / minutosRestantes) * 100), 100);
 
-    progressBar.style.width = `${porcentaje}%`;
-    progressBar.setAttribute('aria-valuenow', porcentaje);
-    progressBar.textContent = `${minutosRestantes - sumaDistribuidos} minutos restantes a distribuir`;
+		progressBar.style.width = `${porcentaje}%`;
+		progressBar.setAttribute('aria-valuenow', porcentaje);
+		progressBar.textContent = `${minutosRestantes - sumaDistribuidos} minutos restantes a distribuir`;
 
-    if (sumaDistribuidos >= limiteMinutos) {
-      progressBar.classList.remove('bg-success');
-      progressBar.classList.add('bg-danger');
-    } else {
-      progressBar.classList.remove('bg-danger');
-      progressBar.classList.add('bg-success');
-    }
-  };
+		if (sumaDistribuidos >= limiteMinutos) {
+		  progressBar.classList.remove('bg-success');
+		  progressBar.classList.add('bg-danger');
+		} else {
+		  progressBar.classList.remove('bg-danger');
+		  progressBar.classList.add('bg-success');
+		}
+	  };
 
-const calcularSumaMinutosDia = (inputExcluido) => {
-    const filas = resultTableBody.querySelectorAll('tr');
-    let sumaMinutos = 0;
+	const calcularSumaMinutosDia = (inputExcluido) => {
+		const filas = resultTableBody.querySelectorAll('tr');
+		let sumaMinutos = 0;
 
-    filas.forEach((fila) => {
-        const minutosInput = fila.querySelector('.minutos-dia');
+		filas.forEach((fila) => {
+			const minutosInput = fila.querySelector('.minutos-dia');
 
-        // Excluir el input actual
-        if (minutosInput !== inputExcluido) {
-            sumaMinutos += parseInt(minutosInput.value) || 0;
-        }
-    });
+			// Excluir el input actual
+			if (minutosInput !== inputExcluido) {
+				sumaMinutos += parseInt(minutosInput.value) || 0;
+			}
+		});
 
-    return sumaMinutos;
-};
+		return sumaMinutos;
+	};
 
 
-  const resetTable = () => {
-    minutosUsadosInputCMF.value = 0;
-    generarTablaDiasHabiles();
-    calcularMinutosADistribuirEnElMes();
-    updateProgressBar();
-  };
-  
-   const eliminarFila = (e) => {
-      if (e.target.classList.contains('trash-btn')) {
-        e.target.closest('tr').remove();
-        recalcularDistribucionMinutos();
-      }
-    };
+	  const resetTable = () => {
+		minutosUsadosInputCMF.value = 0;
+		generarTablaDiasHabiles();
+		calcularMinutosADistribuirEnElMes();
+		updateProgressBar();
+	  };
+	  
+	   const eliminarFila = (e) => {
+		  if (e.target.classList.contains('trash-btn')) {
+			e.target.closest('tr').remove();
+			recalcularDistribucionMinutos();
+		  }
+		};
   
   const recalcularDistribucionMinutos = () => {
-		console.log("recalcularDistribucionMinutos >>>>>");
-      const filas = resultTableBody.querySelectorAll('tr');
+	console.log("recalcularDistribucionMinutos >>>>>");
+      const filas = resultTableBody.querySelectorAll('tr:not([style*="display:none"]):not([style*="display: none"])');
       const totalFilas = filas.length;
       const minutosRestantes = updateMinutosADistribuir();
 	  console.log("	totalFilas:" + totalFilas);
@@ -369,6 +403,12 @@ const calcularSumaMinutosDia = (inputExcluido) => {
   calcularMinutosADistribuirEnElMes();
   updateProgressBar();
 });
+
+
+
+
 </script>
+
+
 </body>
 </html>
