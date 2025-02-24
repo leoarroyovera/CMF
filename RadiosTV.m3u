@@ -15,6 +15,8 @@ https://unlimited3-cl.dps.live/laclave/aac/icecast.audio
 https://27433.live.streamtheworld.com/ACTIVA_SC
 #EXTINF:0 type="stream" group-title="Radio",13c
 https://mdstrm.com/audio/5c915497c6fd7c085b29169d/live.m3u8
+#EXTINF:0 type="stream" group-title="Radio", Carolina Fm
+https://mdstrm.com/audio/637f68ddce4b1208597d8a86/live.m3u8
 #EXTINF:0 type="stream" group-title="Radio", Corazon
 https://27423.live.streamtheworld.com/CORAZON_SC
 #EXTINF:0 group-title="Locales Radio", Casandra FM
