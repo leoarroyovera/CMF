@@ -19,8 +19,6 @@ https://mdstrm.com/audio/5c915497c6fd7c085b29169d/live.m3u8
 https://mdstrm.com/audio/637f68ddce4b1208597d8a86/live.m3u8
 #EXTINF:0 type="stream" group-title="Radio", Corazon
 https://27423.live.streamtheworld.com/CORAZON_SC
-#EXTINF:0 group-title="Locales Radio", Casandra FM
-https://sonic-us.streaming-chile.com/8158/;
 #EXTINF:0 group-title="Locales Radio", Radio Ñuble (89.7 FM )
 https://streaming.comunicacioneschile.net/9358/stream
 #EXTINF:0 group-title="Locales Radio", Radio Macarena (99.7 FM)
@@ -41,8 +39,12 @@ http://archi-us.digitalproserver.com/la-discusion-fm.aac
 https://archi-us.digitalproserver.com/carinosa-fm.aac
 #EXTINF:0 group-title="Locales Radio", Radio El Sembrador (104.7 FM)
 https://sonic-cl.streaming-chile.com:7035/;
-#EXTINF:0 group-title="Locales Radio", Itata (95.9 FM)
-http://176.31.241.17:9990/;Radio/#_.mp3
+#EXTINF:0 group-title="Locales Radio", Sintonía del Itata (95.9)
+https://sonic-us.streaming-chile.com:7019/stream
+#EXTINF:0 group-title="Locales Radio", Radio Estrella Quirihue
+https://sonic-us.streaming-chile.com/8144/stream
+#EXTINF:0 group-title="Locales Radio", La W
+https://sonic-us.streaming-chile.com/8158/;
 #EXTINF:0 group-title="Locales TV" , Sangucheria
 https://oracle.streaminghd.cl/sanguchriaargentina/sanguchriaargentina/playlist.m3u8
 #EXTINF:0 group-title="Locales TV",  Radio El Sembrador TV
@@ -51,7 +53,7 @@ https://tv.streaming-chile.com:1936/elsembrador/elsembrador/playlist.m3u8
 https://tv.telselec.cl:3376/live/nublefmlive.m3u8
 #EXTINF:0 group-title="Locales TV",  Canal 1
 https://tls-cl.cdnz.cl/canal21tv/live/playlist.m3u8
-#EXTINF:0 group-title="Locales TV",  Macarena FM
+#EXTINF:0 group-title="Locales TV",  Radio Ninhue
 https://5ff3d9babae13.streamlock.net:443/8042/8042/playlist.m3u8
 #EXTINF:0 group-title="Locales TV",  Sabrosona FM
 https://samson.streamerr.co:8081/sabrosonavideo/tracks-v1a1/mono.m3u8
