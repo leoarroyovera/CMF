@@ -44,13 +44,13 @@ http://archi-us.digitalproserver.com/la-discusion-fm.aac
 #EXTINF:0 group-title="Locales Radio", Radio Cariñosa (92.1 FM)
 https://archi-us.digitalproserver.com/carinosa-fm.aac
 #EXTINF:0 group-title="Locales Radio", Radio El Sembrador (104.7 FM)
-https://sonic-cl.streaming-chile.com:7035/;
+https://sonic-cl.arkeo.cl:7035/;
 #EXTINF:0 group-title="Locales Radio", Sintonía del Itata (95.9)
-https://sonic-us.streaming-chile.com:7019/stream
+https://sonic-us.arkeo.cl:7019/stream
 #EXTINF:0 group-title="Locales Radio", Radio Estrella Quirihue
-https://sonic-us.streaming-chile.com/8144/stream
+https://sonic-us.arkeo.cl/8144/stream
 #EXTINF:0 group-title="Locales Radio", La W
-https://sonic-us.streaming-chile.com/8158/;
+https://sonic-us.arkeo.cl/8158/;
 #EXTINF:0 group-title="Locales TV" , Sangucheria
 https://oracle.streaminghd.cl/sanguchriaargentina/sanguchriaargentina/playlist.m3u8
 #EXTINF:0 group-title="Locales TV",  Radio El Sembrador TV
@@ -68,7 +68,7 @@ https://paneltv.online:1936/8050/8050/playlist.m3u8
 #EXTINF:0 group-title="Locales TV" , TV Contexto Ñuble
 https://streaming10.zglobalhost.com:1936/8014/8014/playlist.m3u8
 #EXTINF:0 group-title="Locales TV" , Ñublevision
-https://tv.streaming-chile.com:1936/nublevision/nublevision/playlist.m3u8
+https://tv.arkeo.cl:1936/nublevision/nublevision/playlist.m3u8
 #EXTINF:0 group-title="Locales TV",  Canal 9
 https://pantera1-100gb-cl-movistar.dps.live/c9/c9.smil/playlist.m3u8
 #EXTINF:0 group-title="Locales TV",  TVU
@@ -76,7 +76,9 @@ https://pantera1-100gb-cl-movistar.dps.live/tvu/tvu.smil/playlist.m3u8
 #EXTINF:0 group-title="TV" , TVN Chile 
 https://mdstrm.com/live-stream-playlist/533adcc949386ce765657d7c.m3u8 
 #EXTINF:0 group-title="TV", UOCT / TVN
-http://mdstrm.com/live-stream-playlist/5346f657c1e6f5810b5b9df3.m3u8
+https://mdstrm.com/live-stream-playlist/5346f657c1e6f5810b5b9df3.m3u8
+#EXTINF:0 group-title="TV", TVN
+https://mdstrm.com/live-stream-playlist/57a498c4d7b86d600e5461cb.m3u8
 #EXTINF:0 group-title="TV" , 24 Horas Play 
 http://mdstrm.com/live-stream-playlist/57d1a22064f5d85712b20dab.m3u8
 #EXTINF:0 group-title="TV", TVN Señal de Pruebas
