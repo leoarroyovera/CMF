@@ -89,5 +89,7 @@ https://pantera1-100gb-cl-movistar.dps.live/adntv/adntv.smil/playlist.m3u8
 https://pantera1-100gb-cl-movistar.dps.live/bbtv/bbtv.smil/playlist.m3u8
 #EXTINF:0 group-title="TV", Cooperativa TV
 http://unlimited10-cl.dps.live/coopetv/coopetv.smil/playlist.m3u8
+#EXTINF:0 group-title="TV", HD Radio TV
+https://vdo.bitsur.cl:3029/live/hdradiolive.m3u8
 
 
