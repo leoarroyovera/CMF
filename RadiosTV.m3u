@@ -51,8 +51,6 @@ https://sonic-us.arkeo.cl:7019/stream
 https://sonic-us.arkeo.cl/8144/stream
 #EXTINF:0 group-title="Locales Radio", La W
 https://sonic-us.arkeo.cl/8158/;
-#EXTINF:0 group-title="Locales TV" , Sangucheria
-https://oracle.streaminghd.cl/sanguchriaargentina/sanguchriaargentina/playlist.m3u8
 #EXTINF:0 group-title="Locales TV",  Radio El Sembrador TV
 https://tv.arkeo.cl:1936/elsembrador/elsembrador/playlist.m3u8
 #EXTINF:0 group-title="Locales TV",  Radio Ñuble
@@ -69,10 +67,44 @@ https://paneltv.online:1936/8050/8050/playlist.m3u8
 https://streaming10.zglobalhost.com:1936/8014/8014/playlist.m3u8
 #EXTINF:0 group-title="Locales TV" , Ñublevision
 https://tv.arkeo.cl:1936/nublevision/nublevision/playlist.m3u8
+#EXTINF:0 group-title="Locales TV", HD Radio TV
+https://vdo.bitsur.cl:3029/live/hdradiolive.m3u8
+#EXTINF:0 group-title="Locales TV", Canal SCÑ - San Carlos Ñuble | CL
+https://live.tvcontrolcp.com:1936/sancarlostv/sancarlostv/playlist.m3u8
+#EXTINF:0 group-title="Locales TV", Radio Ancoa TV | CL
+https://v2.tustreaming.cl/radioancoatv/index.m3u8?PlaylistM3UCL
 #EXTINF:0 group-title="Locales TV",  Canal 9
 https://pantera1-100gb-cl-movistar.dps.live/c9/c9.smil/playlist.m3u8
 #EXTINF:0 group-title="Locales TV",  TVU
 https://pantera1-100gb-cl-movistar.dps.live/tvu/tvu.smil/playlist.m3u8
+#EXTINF:0 group-title="Locales TV" , Sangucheria
+https://oracle.streaminghd.cl/sanguchriaargentina/sanguchriaargentina/playlist.m3u8
+
+#EXTINF:0 group-title="TV", TVN
+https://mdstrm.com/live-stream-playlist/5346f5f2c1e6f5810b5b9df0.m3u8
+#EXTINF:0 group-title="TV", Mega
+https://unlimited1-cl-isp.dps.live/mega/mega.smil/playlist.m3u8
+#EXTINF:0 group-title="TV", CHV
+https://mdstrm.com/live-stream-playlist/5cc0855ddf297e136a586daa.m3u8
+#EXTINF:0 group-title="TV", Canal 13
+https://m3u.cl/channel/c13.php
+#EXTINF:0 group-title="TV", 13 Cultura | CL
+https://redirector.dps.live/hls/13cultura/playlist.m3u8
+#EXTINF:0 group-title="TV", 13 Cocina | CL
+https://redirector.dps.live/hls/13cocina/playlist.m3u8
+#EXTINF:0 group-title="TV", 13 Pop | CL
+https://redirector.dps.live/hls/13pop/playlist.m3u8
+#EXTINF:0 group-title="TV", 13 Teleseries | CL
+https://redirector.dps.live/hls/13t/playlist.m3u8
+#EXTINF:0 group-title="TV", 13 Festival | CL
+https://redirector.dps.live/hls/13festival/playlist.m3u8
+#EXTINF:0 group-title="TV", 13 Realities | CL
+https://redirector.dps.live/hls/13realities/playlist.m3u8
+#EXTINF:0 group-title="TV", 13 Viajes | CL
+https://redirector.dps.live/hls/13viajes/playlist.m3u8
+#EXTINF:0 group-title="TV", 13 Internacional | CL
+https://redirector.dps.live/hls/13intav/playlist.m3u8
+
 #EXTINF:0 group-title="TV" , TVN Chile 
 https://mdstrm.com/live-stream-playlist/533adcc949386ce765657d7c.m3u8 
 #EXTINF:0 group-title="TV", UOCT / TVN
@@ -84,12 +116,11 @@ http://mdstrm.com/live-stream-playlist/57d1a22064f5d85712b20dab.m3u8
 #EXTINF:0 group-title="TV", TVN Señal de Pruebas
 http://mdstrm.com/live-stream-playlist-v/53443c472c6e89675103cc4c.m3u8
 #EXTINF:0 group-title="TV", Radio ADN TV
-https://pantera1-100gb-cl-movistar.dps.live/adntv/adntv.smil/playlist.m3u8
+https://redirector.rudo.video/hls-video/931b584451fa6dd1313ee66efbfd5802e3f3bcea/adntv/adntv.smil/playlist.m3u8
 #EXTINF:0 group-title="TV", Radio Bio Bio TV
-https://pantera1-100gb-cl-movistar.dps.live/bbtv/bbtv.smil/playlist.m3u8
+https://redirector.rudo.video/hls-video/339f69c6122f6d8f4574732c235f09b7683e31a5/bbtv/bbtv.smil/playlist.m3u8
 #EXTINF:0 group-title="TV", Cooperativa TV
-http://unlimited10-cl.dps.live/coopetv/coopetv.smil/playlist.m3u8
-#EXTINF:0 group-title="TV", HD Radio TV
-https://vdo.bitsur.cl:3029/live/hdradiolive.m3u8
-
+https://unlimited1-cl-isp.dps.live/coopetv/coopetv.smil/playlist.m3u8
+#EXTINF:0 group-title="TV", TVN3 | CL
+https://mdstrm.com/live-stream-playlist/5653641561b4eba30a7e4929.m3u8
 
