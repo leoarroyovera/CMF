@@ -1,125 +1,123 @@
 #EXTM3U
-#EXTINF:-1 type="stream" group-title="Radio", Poesia y Cumbia
+#EXTINF:-1 tvg-name="Poesia y Cumbia" type="stream" group-title="Radio", Poesia y Cumbia
 https://a11.asurahosting.com:8050/radio.mp3
-#EXTINF:-1 type="stream" group-title="Radio", 13c
+#EXTINF:-1 tvg-name="13c" type="stream" group-title="Radio", 13c
 https://mdstrm.com/audio/5c915497c6fd7c085b29169d/live.m3u8
-#EXTINF:-1 type="stream" group-title="Radio", ADN
+#EXTINF:-1 tvg-name="ADN" type="stream" group-title="Radio", ADN
 https://24253.live.streamtheworld.com/ADN_SC
-#EXTINF:-1 type="stream" group-title="Radio",Concierto
+#EXTINF:-1 tvg-name="Concierto" type="stream" group-title="Radio",Concierto
 https://14543.live.streamtheworld.com/CONCIERTOAAC.aac
-#EXTINF:-1 type="stream" group-title="Radio",Radio Cooperativa
+#EXTINF:-1 tvg-name="Radio Cooperativa" type="stream" group-title="Radio",Radio Cooperativa
 http://redirector.dps.live/cooperativafm/mp3/icecast.audio
-#EXTINF:-1 type="stream" group-title="Radio",Radio BioBio
+#EXTINF:-1 tvg-name="Radio BioBio" type="stream" group-title="Radio",Radio BioBio
 http://redirector.dps.live/biobiosantiago/mp3/icecast.audio
-#EXTINF:-1 type="stream" group-title="Radio",La Clave
+#EXTINF:-1 tvg-name="La Clave" type="stream" group-title="Radio",La Clave
 https://unlimited3-cl.dps.live/laclave/aac/icecast.audio
-#EXTINF:-1 type="stream" group-title="Radio", Radioactiva
+#EXTINF:-1 tvg-name="Radioactiva" type="stream" group-title="Radio", Radioactiva
 https://27433.live.streamtheworld.com/ACTIVA_SC
-#EXTINF:-1 type="stream" group-title="Radio",13c
-https://mdstrm.com/audio/5c915497c6fd7c085b29169d/live.m3u8
-#EXTINF:-1 type="stream" group-title="Radio", Carolina Fm
+#EXTINF:-1 tvg-name="Carolina Fm" type="stream" group-title="Radio", Carolina Fm
 https://mdstrm.com/audio/637f68ddce4b1208597d8a86/live.m3u8
-#EXTINF:-1 type="stream" group-title="Radio", Corazon
+#EXTINF:-1 tvg-name="Corazon" type="stream" group-title="Radio", Corazon
 https://27423.live.streamtheworld.com/CORAZON_SC
-#EXTINF:-1 group-title="Locales Radio", Radio Ñuble (89.7 FM )
+#EXTINF:-1 tvg-name="Radio Ñuble (89.7 FM )" group-title="Locales Radio", Radio Ñuble (89.7 FM )
 https://streaming.comunicacioneschile.net/9358/stream
-#EXTINF:-1 group-title="Locales Radio", Radio Pichilemu
+#EXTINF:-1 tvg-name="Radio Pichilemu" group-title="Locales Radio", Radio Pichilemu
 https://sonic01.zglobalhost.com:7013/stream
-#EXTINF:-1 group-title="Locales Radio", Radio HD
+#EXTINF:-1 tvg-name="Radio HD" group-title="Locales Radio", Radio HD
 https://audio.bitsur.cl:8056/stream
-#EXTINF:-1 group-title="Locales Radio", Radio Macarena (99.7 FM)
+#EXTINF:-1 tvg-name="Radio Macarena (99.7 FM)" group-title="Locales Radio", Radio Macarena (99.7 FM)
 https://streaming.comunicacioneschile.net/8068/stream
-#EXTINF:-1 group-title="Locales Radio", Radio Ninhue
+#EXTINF:-1 tvg-name="Radio Ninhue" group-title="Locales Radio", Radio Ninhue
 http://stream.zeno.fm/bd2fvwc9d2zuv
-#EXTINF:-1 group-title="Locales Radio", Radio Sabrosona
+#EXTINF:-1 tvg-name="Radio Sabrosona" group-title="Locales Radio", Radio Sabrosona
 https://audio.streaminghd.cl:2020/stream/sabrosona
-#EXTINF:-1 group-title="Locales Radio", Radio Alborada
+#EXTINF:-1 tvg-name="Radio Alborada" group-title="Locales Radio", Radio Alborada
 https://sonic.portalfoxmix.club/8438/stream
-#EXTINF:-1 group-title="Locales Radio", Radio Isadora (97.7 FM)
+#EXTINF:-1 tvg-name="Radio Isadora (97.7 FM)" group-title="Locales Radio", Radio Isadora (97.7 FM)
 https://streaming.comunicacioneschile.net/9326/stream
-#EXTINF:-1 group-title="Locales Radio", Radio Stellar (102.5 FM)
+#EXTINF:-1 tvg-name="Radio Stellar (102.5 FM)" group-title="Locales Radio", Radio Stellar (102.5 FM)
 http://streaming.comunicacioneschile.net:9376/;
-#EXTINF:-1 group-title="Locales Radio", Radio La Discusion (94.7 FM )
+#EXTINF:-1 tvg-name="Radio La Discusion (94.7 FM )" group-title="Locales Radio", Radio La Discusion (94.7 FM )
 http://archi-us.digitalproserver.com/la-discusion-fm.aac
-#EXTINF:-1 group-title="Locales Radio", Radio Cariñosa (92.1 FM)
+#EXTINF:-1 tvg-name="Radio Cariñosa (92.1 FM)" group-title="Locales Radio", Radio Cariñosa (92.1 FM)
 https://archi-us.digitalproserver.com/carinosa-fm.aac
-#EXTINF:-1 group-title="Locales Radio", Radio El Sembrador (104.7 FM)
+#EXTINF:-1 tvg-name="Radio El Sembrador (104.7 FM)" group-title="Locales Radio", Radio El Sembrador (104.7 FM)
 https://sonic-cl.arkeo.cl:7035/;
-#EXTINF:-1 group-title="Locales Radio", Sintonía del Itata (95.9)
+#EXTINF:-1 tvg-name="Sintonía del Itata (95.9)" group-title="Locales Radio", Sintonía del Itata (95.9)
 https://sonic-us.arkeo.cl:7019/stream
-#EXTINF:-1 group-title="Locales Radio", Radio Estrella Quirihue
+#EXTINF:-1 tvg-name="Radio Estrella Quirihue" group-title="Locales Radio", Radio Estrella Quirihue
 https://sonic-us.arkeo.cl/8144/stream
-#EXTINF:-1 group-title="Locales Radio", La W
+#EXTINF:-1 tvg-name="La W" group-title="Locales Radio", La W
 https://sonic-us.arkeo.cl/8158/;
-#EXTINF:-1 group-title="Locales TV",  Radio El Sembrador TV
+#EXTINF:-1 tvg-name="Radio El Sembrador TV" group-title="Locales TV",  Radio El Sembrador TV
 https://tv.arkeo.cl:1936/elsembrador/elsembrador/playlist.m3u8
-#EXTINF:-1 group-title="Locales TV",  Radio Ñuble
+#EXTINF:-1 tvg-name="Radio Ñuble" group-title="Locales TV",  Radio Ñuble
 https://tv.telselec.cl:3376/live/nublefmlive.m3u8
-#EXTINF:-1 group-title="Locales TV",  Canal 1
+#EXTINF:-1 tvg-name="Canal 1" group-title="Locales TV",  Canal 1
 https://tls-cl.cdnz.cl/canal21tv/live/playlist.m3u8
-#EXTINF:-1 group-title="Locales TV",  Radio Ninhue
+#EXTINF:-1 tvg-name="Radio Ninhue" group-title="Locales TV",  Radio Ninhue
 https://5ff3d9babae13.streamlock.net:443/8042/8042/playlist.m3u8
-#EXTINF:-1 group-title="Locales TV",  Sabrosona FM
+#EXTINF:-1 tvg-name="Sabrosona FM" group-title="Locales TV",  Sabrosona FM
 https://samson.streamerr.co:8081/sabrosonavideo/tracks-v1a1/mono.m3u8
-#EXTINF:-1 group-title="Locales TV" , RTV Ñuble
+#EXTINF:-1 tvg-name="RTV Ñuble" group-title="Locales TV" , RTV Ñuble
 https://paneltv.online:1936/8050/8050/playlist.m3u8
-#EXTINF:-1 group-title="Locales TV" , TV Contexto Ñuble
+#EXTINF:-1 tvg-name="TV Contexto Ñuble" group-title="Locales TV" , TV Contexto Ñuble
 https://streaming10.zglobalhost.com:1936/8014/8014/playlist.m3u8
-#EXTINF:-1 group-title="Locales TV" , Ñublevision
+#EXTINF:-1 tvg-name="Ñublevision" group-title="Locales TV" , Ñublevision
 https://tv.arkeo.cl:1936/nublevision/nublevision/playlist.m3u8
-#EXTINF:-1 group-title="Locales TV", HD Radio TV
+#EXTINF:-1 tvg-name="HD Radio TV" group-title="Locales TV", HD Radio TV
 https://vdo.bitsur.cl:3029/live/hdradiolive.m3u8
-#EXTINF:-1 group-title="Locales TV", Canal SCÑ - San Carlos Ñuble | CL
+#EXTINF:-1 tvg-name="Canal SCÑ - San Carlos Ñuble | CL" group-title="Locales TV", Canal SCÑ - San Carlos Ñuble | CL
 https://live.tvcontrolcp.com:1936/sancarlostv/sancarlostv/playlist.m3u8
-#EXTINF:-1 group-title="Locales TV", Radio Ancoa TV | CL
+#EXTINF:-1 tvg-name="Radio Ancoa TV | CL" group-title="Locales TV", Radio Ancoa TV | CL
 https://v2.tustreaming.cl/radioancoatv/index.m3u8?PlaylistM3UCL
-#EXTINF:-1 group-title="Locales TV",  Canal 9
+#EXTINF:-1 tvg-name="Canal 9" group-title="Locales TV",  Canal 9
 https://pantera1-100gb-cl-movistar.dps.live/c9/c9.smil/playlist.m3u8
-#EXTINF:-1 group-title="Locales TV",  TVU
+#EXTINF:-1 tvg-name="TVU" group-title="Locales TV",  TVU
 https://pantera1-100gb-cl-movistar.dps.live/tvu/tvu.smil/playlist.m3u8
-#EXTINF:-1 group-title="Locales TV" , Sangucheria
+#EXTINF:-1 tvg-name="Sangucheria" group-title="Locales TV" , Sangucheria
 https://oracle.streaminghd.cl/sanguchriaargentina/sanguchriaargentina/playlist.m3u8
 
-#EXTINF:-1 group-title="TV", TVN
+#EXTINF:-1 tvg-name="TVN" group-title="TV", TVN
 https://mdstrm.com/live-stream-playlist/5346f5f2c1e6f5810b5b9df0.m3u8
-#EXTINF:-1 group-title="TV", Mega
+#EXTINF:-1 tvg-name="Mega" group-title="TV", Mega
 https://unlimited1-cl-isp.dps.live/mega/mega.smil/playlist.m3u8
-#EXTINF:-1 group-title="TV", CHV
+#EXTINF:-1 tvg-name="CHV" group-title="TV", CHV
 https://mdstrm.com/live-stream-playlist/5cc0855ddf297e136a586daa.m3u8
-#EXTINF:-1 group-title="TV", Canal 13
+#EXTINF:-1 tvg-name="Canal 13" group-title="TV", Canal 13
 https://m3u.cl/channel/c13.php
-#EXTINF:-1 group-title="TV", 13 Cultura | CL
+#EXTINF:-1 tvg-name="13 Cultura | CL" group-title="TV", 13 Cultura | CL
 https://redirector.dps.live/hls/13cultura/playlist.m3u8
-#EXTINF:-1 group-title="TV", 13 Cocina | CL
+#EXTINF:-1 tvg-name="13 Cocina | CL" group-title="TV", 13 Cocina | CL
 https://redirector.dps.live/hls/13cocina/playlist.m3u8
-#EXTINF:-1 group-title="TV", 13 Pop | CL
+#EXTINF:-1 tvg-name="13 Pop | CL" group-title="TV", 13 Pop | CL
 https://redirector.dps.live/hls/13pop/playlist.m3u8
-#EXTINF:-1 group-title="TV", 13 Teleseries | CL
+#EXTINF:-1 tvg-name="13 Teleseries | CL" group-title="TV", 13 Teleseries | CL
 https://redirector.dps.live/hls/13t/playlist.m3u8
-#EXTINF:-1 group-title="TV", 13 Festival | CL
+#EXTINF:-1 tvg-name="13 Festival | CL" group-title="TV", 13 Festival | CL
 https://redirector.dps.live/hls/13festival/playlist.m3u8
-#EXTINF:-1 group-title="TV", 13 Realities | CL
+#EXTINF:-1 tvg-name="13 Realities | CL" group-title="TV", 13 Realities | CL
 https://redirector.dps.live/hls/13realities/playlist.m3u8
-#EXTINF:-1 group-title="TV", 13 Viajes | CL
+#EXTINF:-1 tvg-name="13 Viajes | CL" group-title="TV", 13 Viajes | CL
 https://redirector.dps.live/hls/13viajes/playlist.m3u8
-#EXTINF:-1 group-title="TV", 13 Internacional | CL
+#EXTINF:-1 tvg-name="13 Internacional | CL" group-title="TV", 13 Internacional | CL
 https://redirector.dps.live/hls/13intav/playlist.m3u8
 
-#EXTINF:-1 group-title="TV" , TVN Chile 
+#EXTINF:-1 tvg-name="TVN Chile " group-title="TV" , TVN Chile 
 https://mdstrm.com/live-stream-playlist/533adcc949386ce765657d7c.m3u8 
-#EXTINF:-1 group-title="TV", UOCT / TVN
+#EXTINF:-1 tvg-name="UOCT / TVN" group-title="TV", UOCT / TVN
 https://mdstrm.com/live-stream-playlist/5346f657c1e6f5810b5b9df3.m3u8
-#EXTINF:-1 group-title="TV", TVN
+#EXTINF:-1 tvg-name="TVN" group-title="TV", TVN
 https://mdstrm.com/live-stream-playlist/57a498c4d7b86d600e5461cb.m3u8
-#EXTINF:-1 group-title="TV" , 24 Horas Play 
+#EXTINF:-1 tvg-name="24 Horas Play " group-title="TV" , 24 Horas Play 
 http://mdstrm.com/live-stream-playlist/57d1a22064f5d85712b20dab.m3u8
-#EXTINF:-1 group-title="TV", TVN Señal de Pruebas
+#EXTINF:-1 tvg-name="TVN Señal de Pruebas" group-title="TV", TVN Señal de Pruebas
 http://mdstrm.com/live-stream-playlist-v/53443c472c6e89675103cc4c.m3u8
-#EXTINF:-1 group-title="TV", Radio ADN TV
+#EXTINF:-1 tvg-name="Radio ADN TV" group-title="TV", Radio ADN TV
 https://redirector.rudo.video/hls-video/931b584451fa6dd1313ee66efbfd5802e3f3bcea/adntv/adntv.smil/playlist.m3u8
-#EXTINF:-1 group-title="TV", Radio Bio Bio TV
+#EXTINF:-1 tvg-name="Radio Bio Bio TV" group-title="TV", Radio Bio Bio TV
 https://redirector.rudo.video/hls-video/339f69c6122f6d8f4574732c235f09b7683e31a5/bbtv/bbtv.smil/playlist.m3u8
-#EXTINF:-1 group-title="TV", Cooperativa TV
+#EXTINF:-1 tvg-name="Cooperativa TV" group-title="TV", Cooperativa TV
 https://unlimited1-cl-isp.dps.live/coopetv/coopetv.smil/playlist.m3u8
-#EXTINF:-1 group-title="TV", TVN3 | CL
+#EXTINF:-1 tvg-name="TVN3 | CL" group-title="TV", TVN3 | CL
 https://mdstrm.com/live-stream-playlist/5653641561b4eba30a7e4929.m3u8
