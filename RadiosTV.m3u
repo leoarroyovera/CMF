@@ -59,11 +59,11 @@ https://tls-cl.cdnz.cl/canal21tv/live/playlist.m3u8
 https://5ff3d9babae13.streamlock.net:443/8042/8042/playlist.m3u8
 #EXTINF:-1 tvg-name="Sabrosona FM" group-title="Locales TV",  Sabrosona FM
 https://samson.streamerr.co:8081/sabrosonavideo/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-name="RTV Ñuble" group-title="Locales TV" , RTV Ñuble
+#EXTINF:-1 tvg-name="RTV Ñuble" group-title="Locales TV", RTV Ñuble
 https://paneltv.online:1936/8050/8050/playlist.m3u8
-#EXTINF:-1 tvg-name="TV Contexto Ñuble" group-title="Locales TV" , TV Contexto Ñuble
+#EXTINF:-1 tvg-name="TV Contexto Ñuble" group-title="Locales TV", TV Contexto Ñuble
 https://streaming10.zglobalhost.com:1936/8014/8014/playlist.m3u8
-#EXTINF:-1 tvg-name="Ñublevision" group-title="Locales TV" , Ñublevision
+#EXTINF:-1 tvg-name="Ñublevision" group-title="Locales TV", Ñublevision
 https://tv.arkeo.cl:1936/nublevision/nublevision/playlist.m3u8
 #EXTINF:-1 tvg-name="HD Radio TV" group-title="Locales TV", HD Radio TV
 https://vdo.bitsur.cl:3029/live/hdradiolive.m3u8
@@ -75,7 +75,7 @@ https://v2.tustreaming.cl/radioancoatv/index.m3u8?PlaylistM3UCL
 https://pantera1-100gb-cl-movistar.dps.live/c9/c9.smil/playlist.m3u8
 #EXTINF:-1 tvg-name="TVU" group-title="Locales TV",  TVU
 https://pantera1-100gb-cl-movistar.dps.live/tvu/tvu.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="Sangucheria" group-title="Locales TV" , Sangucheria
+#EXTINF:-1 tvg-name="Sangucheria" group-title="Locales TV", Sangucheria
 https://oracle.streaminghd.cl/sanguchriaargentina/sanguchriaargentina/playlist.m3u8
 
 #EXTINF:-1 tvg-name="TVN" group-title="TV", TVN
@@ -103,13 +103,13 @@ https://redirector.dps.live/hls/13viajes/playlist.m3u8
 #EXTINF:-1 tvg-name="13 Internacional | CL" group-title="TV", 13 Internacional | CL
 https://redirector.dps.live/hls/13intav/playlist.m3u8
 
-#EXTINF:-1 tvg-name="TVN Chile " group-title="TV" , TVN Chile 
+#EXTINF:-1 tvg-name="TVN Chile " group-title="TV", TVN Chile 
 https://mdstrm.com/live-stream-playlist/533adcc949386ce765657d7c.m3u8 
 #EXTINF:-1 tvg-name="UOCT / TVN" group-title="TV", UOCT / TVN
 https://mdstrm.com/live-stream-playlist/5346f657c1e6f5810b5b9df3.m3u8
 #EXTINF:-1 tvg-name="TVN" group-title="TV", TVN
 https://mdstrm.com/live-stream-playlist/57a498c4d7b86d600e5461cb.m3u8
-#EXTINF:-1 tvg-name="24 Horas Play " group-title="TV" , 24 Horas Play 
+#EXTINF:-1 tvg-name="24 Horas Play " group-title="TV", 24 Horas Play 
 http://mdstrm.com/live-stream-playlist/57d1a22064f5d85712b20dab.m3u8
 #EXTINF:-1 tvg-name="TVN Señal de Pruebas" group-title="TV", TVN Señal de Pruebas
 http://mdstrm.com/live-stream-playlist-v/53443c472c6e89675103cc4c.m3u8
