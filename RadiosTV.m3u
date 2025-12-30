@@ -1,6 +1,8 @@
 #EXTM3U
 #EXTINF:-1 tvg-name="Poesia y Cumbia" type="stream" group-title="Radio", Poesia y Cumbia
 https://a11.asurahosting.com:8050/radio.mp3
+#EXTINF:-1 tvg-name="Poesia y Cumbia" type="stream" group-title="Radio", Poesia y Cumbia (HLS)
+https://a11.asurahosting.com/hls/poesia_y_cumbia_radio/live.m3u8
 #EXTINF:-1 tvg-name="13c" type="stream" group-title="Radio", 13c
 https://mdstrm.com/audio/5c915497c6fd7c085b29169d/live.m3u8
 #EXTINF:-1 tvg-name="ADN" type="stream" group-title="Radio", ADN
@@ -121,3 +123,4 @@ https://redirector.rudo.video/hls-video/339f69c6122f6d8f4574732c235f09b7683e31a5
 https://unlimited1-cl-isp.dps.live/coopetv/coopetv.smil/playlist.m3u8
 #EXTINF:-1 tvg-name="TVN3 | CL" group-title="TV", TVN3 | CL
 https://mdstrm.com/live-stream-playlist/5653641561b4eba30a7e4929.m3u8
+
