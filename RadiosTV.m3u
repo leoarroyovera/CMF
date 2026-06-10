@@ -3,22 +3,22 @@
 https://studio.loovacast.com/listen/poesiaycumbia/radio.mp3
 #EXTINF:-1 tvg-name="Poesia y Cumbia" type="stream" group-title="Radio", Poesia y Cumbia (HLS)
 https://studio.loovacast.com/hls/poesiaycumbia/live.m3u8
-#EXTINF:-1 tvg-name="13c" type="stream" group-title="Radio", 13c
-https://mdstrm.com/audio/5c915497c6fd7c085b29169d/live.m3u8
-#EXTINF:-1 tvg-name="ADN" type="stream" group-title="Radio", ADN
-https://24253.live.streamtheworld.com/ADN_SC
-#EXTINF:-1 tvg-name="Concierto" type="stream" group-title="Radio",Concierto
-https://14543.live.streamtheworld.com/CONCIERTOAAC.aac
+#EXTINF:-1 tvg-name="Radioactiva" type="stream" group-title="Radio", Radioactiva
+https://24403.live.streamtheworld.com/ACTIVAAAC.aac
+#EXTINF:-1 tvg-name="Carolina Fm" type="stream" group-title="Radio", Carolina Fm
+https://mdstrm.com/audio/637f68ddce4b1208597d8a86/live.m3u8
 #EXTINF:-1 tvg-name="Radio Cooperativa" type="stream" group-title="Radio",Radio Cooperativa
 http://redirector.dps.live/cooperativafm/mp3/icecast.audio
 #EXTINF:-1 tvg-name="Radio BioBio" type="stream" group-title="Radio",Radio BioBio
 http://redirector.dps.live/biobiosantiago/mp3/icecast.audio
+#EXTINF:-1 tvg-name="ADN" type="stream" group-title="Radio", ADN
+https://24253.live.streamtheworld.com/ADN_SC
+#EXTINF:-1 tvg-name="Concierto" type="stream" group-title="Radio",Concierto
+https://24253.live.streamtheworld.com/CONCIERTOAAC.aac
 #EXTINF:-1 tvg-name="La Clave" type="stream" group-title="Radio",La Clave
 https://unlimited3-cl.dps.live/laclave/aac/icecast.audio
-#EXTINF:-1 tvg-name="Radioactiva" type="stream" group-title="Radio", Radioactiva
-https://27433.live.streamtheworld.com/ACTIVA_SC
-#EXTINF:-1 tvg-name="Carolina Fm" type="stream" group-title="Radio", Carolina Fm
-https://mdstrm.com/audio/637f68ddce4b1208597d8a86/live.m3u8
+#EXTINF:-1 tvg-name="13c" type="stream" group-title="Radio", 13c
+https://mdstrm.com/audio/5c915497c6fd7c085b29169d/live.m3u8
 #EXTINF:-1 tvg-name="Corazon" type="stream" group-title="Radio", Corazon
 https://27423.live.streamtheworld.com/CORAZON_SC
 #EXTINF:-1 tvg-name="Radio Ñuble (89.7 FM )" group-title="Locales Radio", Radio Ñuble (89.7 FM )
