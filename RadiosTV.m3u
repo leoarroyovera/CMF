@@ -81,7 +81,7 @@ https://pantera1-100gb-cl-movistar.dps.live/tvu/tvu.smil/playlist.m3u8
 https://oracle.streaminghd.cl/sanguchriaargentina/sanguchriaargentina/playlist.m3u8
 
 #EXTINF:-1 tvg-name="TVN" group-title="TV", TVN
-https://mdstrm.com/live-stream-playlist/5346f5f2c1e6f5810b5b9df0.m3u8
+http://217.26.190.76:8888/play/a0m6/index.m3u8
 #EXTINF:-1 tvg-name="Mega" group-title="TV", Mega
 https://unlimited1-cl-isp.dps.live/mega/mega.smil/playlist.m3u8
 #EXTINF:-1 tvg-name="CHV" group-title="TV", CHV
