@@ -81,11 +81,11 @@ https://pantera1-100gb-cl-movistar.dps.live/tvu/tvu.smil/playlist.m3u8
 https://oracle.streaminghd.cl/sanguchriaargentina/sanguchriaargentina/playlist.m3u8
 
 #EXTINF:-1 tvg-name="TVN" group-title="TV", TVN
-http://217.26.190.76:8888/play/a0m6/index.m3u8
+http://138.121.15.230:9002/TVN/index.m3u8
 #EXTINF:-1 tvg-name="Mega" group-title="TV", Mega
 https://unlimited1-cl-isp.dps.live/mega/mega.smil/playlist.m3u8
 #EXTINF:-1 tvg-name="CHV" group-title="TV", CHV
-https://mdstrm.com/live-stream-playlist/63ee47e1daeeb80a30d98ef4.m3u8?access_token=tUtTo7ul918eDJN1aNFG0ewnwvhBwIOmlAh3kIt24li6ekHj5YPEGHqlLQlFri4Z4Q9epCrUj1p
+https://origin.dpsgo.com/ssai/event/R6cwOFyHQXaW6-kMcfWYKA/master.m3u8
 #EXTINF:-1 tvg-name="Canal 13" group-title="TV", Canal 13
 https://m3u.cl/channel/c13.php
 #EXTINF:-1 tvg-name="13 Cultura | CL" group-title="TV", 13 Cultura | CL
@@ -106,7 +106,7 @@ https://redirector.dps.live/hls/13viajes/playlist.m3u8
 https://redirector.dps.live/hls/13intav/playlist.m3u8
 
 #EXTINF:-1 tvg-name="TVN Chile " group-title="TV", TVN Chile 
-https://mdstrm.com/live-stream-playlist/533adcc949386ce765657d7c.m3u8 
+https://mdstrm.com/live-stream-playlist/57a498c4d7b86d600e5461cb.m3u8 
 #EXTINF:-1 tvg-name="UOCT / TVN" group-title="TV", UOCT / TVN
 https://mdstrm.com/live-stream-playlist/5346f657c1e6f5810b5b9df3.m3u8
 #EXTINF:-1 tvg-name="TVN" group-title="TV", TVN
