@@ -3,6 +3,8 @@
 https://studio.loovacast.com/listen/poesiaycumbia/radio.mp3
 #EXTINF:-1 tvg-name="Poesia y Cumbia" type="stream" group-title="Radio", Poesia y Cumbia (HLS)
 https://studio.loovacast.com/hls/poesiaycumbia/live.m3u8
+#EXTINF:-1 tvg-name="Poesia y Cumbia" type="stream" group-title="Radio", Poesia y Cumbia (Oracle)
+http://poesiaycumbia.duckdns.org/listen/poesia_y_cumbia_radio/radio.mp3
 #EXTINF:-1 tvg-name="Radioactiva" type="stream" group-title="Radio", Radioactiva
 https://24403.live.streamtheworld.com/ACTIVAAAC.aac
 #EXTINF:-1 tvg-name="Carolina Fm" type="stream" group-title="Radio", Carolina Fm
